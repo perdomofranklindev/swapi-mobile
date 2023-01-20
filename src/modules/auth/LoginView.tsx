@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { LoginContainer } from './components/LoginContainer';
 import {
   Button,
@@ -15,6 +15,7 @@ import { Controller } from 'react-hook-form';
 import { LoginFormType } from './auth-types';
 import { useMutation } from 'react-query';
 import { useAuthServices } from './auth-services';
+import { useNavigation } from '@react-navigation/native';
 import Toast from 'react-native-toast-message';
 
 export const LoginView = () => {
@@ -24,16 +25,26 @@ export const LoginView = () => {
 
   // Services.
   const { login } = useAuthServices();
-  const { isLoading, mutate } = useMutation(login);
+  const { isLoading, mutateAsync } = useMutation(login);
+
+  const nav = useNavigation();
 
   const onSubmit = async (data: LoginFormType): Promise<void> => {
-    // TODO: Call the login services.
     try {
-      await mutate(data);
+      await mutateAsync(data);
+
       Toast.show({
         type: 'success',
         text1: 'Login successful',
       });
+      
+      // Redirect to home.
+      nav.navigate(
+        'Home' as never,
+        {
+          screen: 'People',
+        } as never,
+      );
     } catch (error) {
       Toast.show({
         type: 'error',
@@ -81,7 +92,7 @@ export const LoginView = () => {
           />
         </VStack>
         <Divider my={2} />
-        <Button 
+        <Button
           isLoading={isLoading}
           disabled={isLoading}
           onPress={handleSubmit(onSubmit)}>
