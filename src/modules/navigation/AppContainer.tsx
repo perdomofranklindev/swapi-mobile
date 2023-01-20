@@ -67,7 +67,9 @@ export const AppContainer = () => {
       {session && _hasHydrated && (
         <>
           <Stack.Screen name="Home" component={Home} />
-          <Stack.Screen name="PeopleCreate" component={PeopleCreateView} />
+          <Stack.Group screenOptions={{ presentation: "modal" }}>
+            <Stack.Screen name="PeopleCreate" component={PeopleCreateView} />
+          </Stack.Group>
         </>
       )}
     </Stack.Navigator>

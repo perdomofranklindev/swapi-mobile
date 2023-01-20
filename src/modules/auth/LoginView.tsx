@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { LoginContainer } from './components/LoginContainer';
 import {
   Button,
@@ -29,13 +29,17 @@ export const LoginView = () => {
 
   const nav = useNavigation();
 
+  /**
+   * @description - Login form submit handler.
+   * @param {LoginFormType} data - Login form data.
+   * @return {Promise<void>} - Nothing.
+   */
   const onSubmit = async (data: LoginFormType): Promise<void> => {
     try {
       await mutateAsync(data);
-
       Toast.show({
         type: 'success',
-        text1: 'Login successful',
+        text1: 'Logged!',
       });
       
       // Redirect to home.
