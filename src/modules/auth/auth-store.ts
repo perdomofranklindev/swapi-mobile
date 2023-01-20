@@ -9,6 +9,7 @@ interface SessionState {
   clearSession: () => void;
 }
 
+// Persist.
 export const useSessionStore = create(
   persist<SessionState>(
     (set) => ({
