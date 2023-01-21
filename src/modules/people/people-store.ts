@@ -5,7 +5,7 @@ interface PeopleState {
   people: Array<Person>;
   updateAllPeople: (people: Array<Person>) => void;
   addPerson: (person: Person) => void;
-  removeCharacter: (index: number) => void;
+  removePerson: (index: number) => void;
 }
 
 export const usePeopleStore = create<PeopleState>((set) => ({
@@ -20,7 +20,7 @@ export const usePeopleStore = create<PeopleState>((set) => ({
       return { people: values };
     });
   },
-  removeCharacter: (index) => {
+  removePerson: (index) => {
     set((state) => {
       const values = state.people || [];
       values.splice(index, 1);

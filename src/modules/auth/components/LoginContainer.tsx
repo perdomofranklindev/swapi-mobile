@@ -11,7 +11,7 @@ export const LoginContainer: React.FC<Props> = ({ children }) => (
     style={{
       width: '100%',
     }}>
-    <Center style={{ paddingBottom: 50 }}>
+    <Center>
       <Container>
         <FormControl>{children}</FormControl>
       </Container>

@@ -19,6 +19,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../navigation/navigation-types';
 import Toast from 'react-native-toast-message';
 import Logo from '../../shared/assets/logo.svg';
+import packageJson from '../../../package.json';
 
 type LoginProps = NativeStackScreenProps<RootStackParamList, 'Login'>;
 
@@ -110,6 +111,7 @@ export const LoginView: React.FC<LoginProps> = ({ navigation }) => {
           onPress={handleSubmit(onSubmit)}>
           Log In
         </Button>
+        <Text my={10} textAlign="center">{`v${packageJson.version}`}</Text>
       </Box>
     </LoginContainer>
   );
