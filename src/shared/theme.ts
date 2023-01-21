@@ -1,11 +1,25 @@
-import { extendTheme } from "native-base";
+import { extendTheme } from 'native-base';
 
-const newColorTheme = {
-  brand: {
-    900: "#8287af",
-    800: "#7c83db",
-    700: "#b3bef6",
+export const theme = extendTheme({
+  colors: {
+    primary: {
+      50:  '#f40057',
+      100: '#f40057',
+      200: '#f40057',
+      300: '#f40057',
+      400: '#f40057',
+      500: '#f40057',
+      600: '#f40057',
+      700: '#f40057',
+      800: '#f40057',
+      900: '#f40057'
+      // 50: '#f40057',
+    },
+    secondary: {
+      900: '#253681',
+    },
+    tertiary: {
+      900: '#0590eb',
+    },
   },
-};
-
-export const theme = extendTheme({ colors: newColorTheme });
+});

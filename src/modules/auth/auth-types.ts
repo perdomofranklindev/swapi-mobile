@@ -10,4 +10,6 @@ export const LOGIN_FORM_VALIDATOR_SCHEMA = yup
 export type LoginFormType =
   (typeof LOGIN_FORM_VALIDATOR_SCHEMA)['__outputType'];
 
-export interface User extends LoginFormType {};
+export interface User extends LoginFormType {
+  username?: string;
+};

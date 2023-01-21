@@ -3,7 +3,7 @@ import { User } from './auth-types';
 import _data from './mocks/data.json';
 
 const data: Array<User> = _data;
-const TIME = 1500 // 1.5 seconds
+const TIME = 1500; // 1.5 seconds
 
 // Fake services.
 
@@ -21,7 +21,9 @@ export const useAuthServices = () => {
     await new Promise((resolve, reject) => {
       setTimeout(() => {
         const user = data.find(
-          (user) => user.email === email && user.password === password,
+          (user) =>
+            (user.email === email || user.username === email) &&
+            user.password === password,
         );
 
         if (!user) {
