@@ -3,11 +3,11 @@ import { Person } from './people-types';
 import { usePeopleStore } from './people-store';
 
 export const usePeopleServices = () => {
-  const { People, updateAllPeople } = usePeopleStore();
+  const { people, updateAllPeople } = usePeopleStore();
 
   const getPeople = async (): Promise<Array<Person>> => {
-    if (People.length) {
-      return await People;
+    if (people.length) {
+      return await people;
     }
 
     return fetch(`${BASE_URL_API}/people/`)

@@ -8,25 +8,33 @@ import { LoadingOverlap } from '../../shared/components/LoadingOverlap';
 import { PeopleView } from '../people/PeopleView';
 import { PersonCreateView } from '../people/PersonCreateView';
 
-const Tab = createMaterialBottomTabNavigator();
+const TabNavigator = createMaterialBottomTabNavigator();
 const Stack = createNativeStackNavigator();
+const PeopleStack = createNativeStackNavigator();
 
-const Home = () => {
+const Tab = () => {
   return (
-    <Tab.Navigator>
-      <Tab.Screen
-        name="People"
-        component={PeopleView}
+    <TabNavigator.Navigator>
+      <TabNavigator.Screen
+        name="Home"
+        component={People}
         options={{ title: 'Home' }}
       />
-      <Tab.Screen
+      <TabNavigator.Screen
         name="Configuration"
         component={ConfigurationView}
         options={{ title: 'Configuration' }}
       />
-    </Tab.Navigator>
+    </TabNavigator.Navigator>
   );
 };
+
+const People = () => (
+  <PeopleStack.Navigator initialRouteName="People">
+    <PeopleStack.Screen name="People" component={PeopleView} />
+    <PeopleStack.Screen name="PersonCreate" component={PersonCreateView} />
+  </PeopleStack.Navigator>
+);
 
 export const AppContainer = () => {
   // Hydrated is a flag to wait until the storage memory is read.
@@ -34,9 +42,6 @@ export const AppContainer = () => {
 
   return (
     <Stack.Navigator initialRouteName="Login">
-      {
-        // Loading
-      }
       {!_hasHydrated && (
         <Stack.Screen
           name="Loading"
@@ -46,10 +51,6 @@ export const AppContainer = () => {
           }}
         />
       )}
-
-      {
-        // Login
-      }
       {!session && _hasHydrated && (
         <Stack.Screen
           name="Login"
@@ -60,18 +61,7 @@ export const AppContainer = () => {
           }}
         />
       )}
-
-      {
-        // Home
-      }
-      {session && _hasHydrated && (
-        <>
-          <Stack.Screen name="Home" component={Home} />
-          <Stack.Group screenOptions={{ presentation: "modal" }}>
-            <Stack.Screen name="PersonCreate" component={PersonCreateView} />
-          </Stack.Group>
-        </>
-      )}
+      {session && _hasHydrated && <Stack.Screen name="Home" component={Tab} />}
     </Stack.Navigator>
   );
 };
