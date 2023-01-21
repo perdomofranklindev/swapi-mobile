@@ -1,11 +1,17 @@
 import React from 'react';
-import { useNavigation } from '@react-navigation/native';
 import { View, Heading, Button } from 'native-base';
 import { useSessionStore } from './auth-store';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { BottomTabParamList } from '../navigation/navigation-types';
 
-export const ConfigurationView = () => {
+type ConfigurationProps = NativeStackScreenProps<
+  BottomTabParamList,
+  'Configuration'
+>;
+export const ConfigurationView: React.FC<ConfigurationProps> = ({
+  navigation,
+}) => {
   const { clearSession } = useSessionStore();
-  const nav = useNavigation();
 
   return (
     <View>
@@ -14,7 +20,7 @@ export const ConfigurationView = () => {
         color="red.400"
         onPress={() => {
           clearSession();
-          nav.navigate('Login' as never, { screen: 'Login' } as never);
+          navigation.popToTop();
         }}>
         Log out
       </Button>

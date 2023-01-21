@@ -15,10 +15,13 @@ import { Controller } from 'react-hook-form';
 import { LoginFormType } from './auth-types';
 import { useMutation } from 'react-query';
 import { useAuthServices } from './auth-services';
-import { useNavigation } from '@react-navigation/native';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../navigation/navigation-types';
 import Toast from 'react-native-toast-message';
 
-export const LoginView = () => {
+type LoginProps = NativeStackScreenProps<RootStackParamList, 'Login'>;
+
+export const LoginView: React.FC<LoginProps> = ({ navigation }) => {
   const { control, handleSubmit } = useLoginForm({
     defaultValues: {},
   });
@@ -26,8 +29,6 @@ export const LoginView = () => {
   // Services.
   const { login } = useAuthServices();
   const { isLoading, mutateAsync } = useMutation(login);
-
-  const nav = useNavigation();
 
   /**
    * @description - Login form submit handler.
@@ -41,14 +42,9 @@ export const LoginView = () => {
         type: 'success',
         text1: 'Logged!',
       });
-      
+
       // Redirect to home.
-      nav.navigate(
-        'Home' as never,
-        {
-          screen: 'People',
-        } as never,
-      );
+      navigation.navigate('Home');
     } catch (error) {
       Toast.show({
         type: 'error',

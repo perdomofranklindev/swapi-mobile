@@ -16,9 +16,16 @@ import { PERSON_INPUTS } from './people-constants';
 import { usePersonForm } from './people-hooks';
 import { capitalCase } from 'change-case';
 import { PersonFormType } from './people-types';
+import { PeopleStackParamList } from '../navigation/navigation-types';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import Toast from 'react-native-toast-message';
 
-export const PersonCreateView = () => {
+type PersonCreateProps = NativeStackScreenProps<
+  PeopleStackParamList,
+  'PersonCreate'
+>;
+
+export const PersonCreateView: React.FC<PersonCreateProps> = ({}) => {
   const { addPerson } = usePeopleStore();
   const { reset, control, handleSubmit } = usePersonForm({
     defaultValues: {},

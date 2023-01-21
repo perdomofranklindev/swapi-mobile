@@ -11,14 +11,15 @@ import {
 } from 'native-base';
 import { usePeopleServices } from './people-services';
 import { useQuery } from 'react-query';
+import { PeopleStackParamList } from '../navigation/navigation-types';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import dayjs from 'dayjs';
-import { useNavigation } from '@react-navigation/native';
 
-export const PeopleView = () => {
+type PeopleProps = NativeStackScreenProps<PeopleStackParamList, 'People'>;
+
+export const PeopleView: React.FC<PeopleProps> = ({ navigation }) => {
   const { getPeople } = usePeopleServices();
   const { isError, refetch, isLoading, data } = useQuery('People', getPeople);
-
-  const nav = useNavigation();
 
   return (
     <View>
@@ -27,13 +28,15 @@ export const PeopleView = () => {
           <Box>
             <Button
               onPress={() => {
-                nav.navigate('PersonCreate');
+                navigation.navigate('PersonCreate');
               }}>
               Add a new person
             </Button>
           </Box>
         )}
-        data={data}
+        data={data?.sort((a, b) => {
+          return dayjs(b.created).unix() - dayjs(a.created).unix();
+        })}
         keyExtractor={(item) => String(item.created)}
         paddingX={5}
         renderItem={({ item }) => (

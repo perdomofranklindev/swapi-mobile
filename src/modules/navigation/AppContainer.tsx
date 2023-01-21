@@ -7,14 +7,19 @@ import { ConfigurationView } from '../auth/ConfigurationView';
 import { LoadingOverlap } from '../../shared/components/LoadingOverlap';
 import { PeopleView } from '../people/PeopleView';
 import { PersonCreateView } from '../people/PersonCreateView';
+import {
+  BottomTabParamList,
+  PeopleStackParamList,
+  RootStackParamList,
+} from './navigation-types';
 
-const TabNavigator = createMaterialBottomTabNavigator();
-const Stack = createNativeStackNavigator();
-const PeopleStack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<RootStackParamList>();
+const TabNavigator = createMaterialBottomTabNavigator<BottomTabParamList>();
+const PeopleStack = createNativeStackNavigator<PeopleStackParamList>();
 
 const Tab = () => {
   return (
-    <TabNavigator.Navigator>
+    <TabNavigator.Navigator initialRouteName="Home">
       <TabNavigator.Screen
         name="Home"
         component={People}
@@ -61,7 +66,7 @@ export const AppContainer = () => {
           }}
         />
       )}
-      {session && _hasHydrated && <Stack.Screen name="Home" component={Tab} />}
+      {session && _hasHydrated && <Stack.Screen name="Main" component={Tab} />}
     </Stack.Navigator>
   );
 };
