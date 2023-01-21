@@ -27,9 +27,9 @@ export const PeopleView = () => {
           <Box>
             <Button
               onPress={() => {
-                nav.navigate('PeopleCreate');
+                nav.navigate('PersonCreate');
               }}>
-              Add a new character
+              Add a new person
             </Button>
           </Box>
         )}

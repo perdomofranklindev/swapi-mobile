@@ -1,12 +1,12 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { LoginView } from '../auth/LoginView';
-import { PeopleView } from '../people/PeopleView';
-import { PeopleCreateView } from '../people/PeopleCreateView';
 import { useSessionStore } from '../auth/auth-store';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { ConfigurationView } from '../auth/ConfigurationView';
 import { LoadingOverlap } from '../../shared/components/LoadingOverlap';
+import { PeopleView } from '../people/PeopleView';
+import { PersonCreateView } from '../people/PersonCreateView';
 
 const Tab = createMaterialBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -68,7 +68,7 @@ export const AppContainer = () => {
         <>
           <Stack.Screen name="Home" component={Home} />
           <Stack.Group screenOptions={{ presentation: "modal" }}>
-            <Stack.Screen name="PeopleCreate" component={PeopleCreateView} />
+            <Stack.Screen name="PersonCreate" component={PersonCreateView} />
           </Stack.Group>
         </>
       )}

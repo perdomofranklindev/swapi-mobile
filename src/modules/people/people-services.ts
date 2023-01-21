@@ -1,13 +1,13 @@
 import { BASE_URL_API } from '../../shared/constants';
-import { Person } from './people-model';
+import { Person } from './people-types';
 import { usePeopleStore } from './people-store';
 
 export const usePeopleServices = () => {
-  const { people, updateAllPeople } = usePeopleStore();
+  const { People, updateAllPeople } = usePeopleStore();
 
   const getPeople = async (): Promise<Array<Person>> => {
-    if (people.length) {
-      return await people;
+    if (People.length) {
+      return await People;
     }
 
     return fetch(`${BASE_URL_API}/people/`)

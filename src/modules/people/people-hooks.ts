@@ -1,26 +1,26 @@
 import React from 'react';
 import {
   FieldValues,
-  useForm,
   UseFormProps,
   UseFormReturn,
+  useForm,
 } from 'react-hook-form';
-import { LoginFormType, LOGIN_FORM_VALIDATOR_SCHEMA } from './auth-types';
+import { PersonFormType, PERSON_FORM_VALIDATOR_SCHEMA } from './people-types';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useSubscribeError } from '../../shared/hooks';
 import Toast from 'react-native-toast-message';
 
 /**
- * @description - Hook for login form.
+ * @description - Hook for person form.
  * @param {UseFormProps} formOptions - Options.
- * @returns {UseFormReturn<LoginFormType>} - Hook.
+ * @returns {UseFormReturn<PersonFormType>} - Hooks.
  */
-export function useLoginForm(
+export function usePersonForm(
   formOptions?: UseFormProps,
-): UseFormReturn<LoginFormType> {
-  const data = useForm<LoginFormType>({
+): UseFormReturn<PersonFormType> {
+  const data = useForm<PersonFormType>({
     ...(formOptions as FieldValues),
-    resolver: yupResolver(LOGIN_FORM_VALIDATOR_SCHEMA, {}),
+    resolver: yupResolver(PERSON_FORM_VALIDATOR_SCHEMA, {}),
   });
 
   useSubscribeError(data, () => {
