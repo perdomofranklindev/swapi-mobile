@@ -3,7 +3,7 @@ import { User } from './auth-types';
 import _data from './mocks/data.json';
 
 const data: Array<User> = _data;
-const TIME = 1500; // 1.5 seconds
+const TIME = 1000; // 1 second
 
 // Fake services.
 
@@ -40,7 +40,12 @@ export const useAuthServices = () => {
    * @returns {Promise<void>} - Nothing.
    */
   const logout = async (): Promise<void> => {
-    await new Promise(() => setTimeout(() => clearSession(), TIME));
+    await new Promise((resolve) => {
+      setTimeout(() => {
+        clearSession();
+        return resolve(1);
+      }, TIME);
+    });
   };
 
   return { login, logout };

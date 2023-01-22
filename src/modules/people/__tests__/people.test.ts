@@ -1,4 +1,4 @@
-import { usePeopleStore } from './../people-store';
+import { usePeopleStore } from '../people-store';
 import { act, renderHook } from '@testing-library/react-hooks';
 import { cleanup } from '@testing-library/react';
 
