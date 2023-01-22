@@ -2,8 +2,6 @@ import { cleanup } from '@testing-library/react';
 import { useAuthServices } from '../auth-services';
 import { act, renderHook } from '@testing-library/react-hooks';
 
-jest.useRealTimers();
-
 describe('Auth module', () => {
 
   afterEach(() => {
