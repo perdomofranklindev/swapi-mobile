@@ -2,8 +2,8 @@ import * as yup from 'yup';
 
 export const LOGIN_FORM_VALIDATOR_SCHEMA = yup
   .object({
-    email: yup.string(),
-    password: yup.string(),
+    email: yup.string().required('This field is required'),
+    password: yup.string().required('This field is required'),
   })
   .required();
 
@@ -12,4 +12,4 @@ export type LoginFormType =
 
 export interface User extends LoginFormType {
   username?: string;
-};
+}

@@ -25,7 +25,7 @@ export function useLoginForm(
 
   useSubscribeError(data, () => {
     Toast.show({
-      type: 'alert',
+      type: 'error',
       text1: 'Invalid data.',
     });
   });

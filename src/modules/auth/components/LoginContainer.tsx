@@ -10,11 +10,10 @@ export const LoginContainer: React.FC<Props> = ({ children }) => (
     contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }}
     style={{
       width: '100%',
-    }}>
+    }}
+    _light={{ bg: 'white' }}>
     <Center>
-      <Container>
-        <FormControl>{children}</FormControl>
-      </Container>
+      <Container>{children}</Container>
     </Center>
   </ScrollView>
 );

@@ -17,6 +17,7 @@ import { useMutation } from 'react-query';
 import { useAuthServices } from './auth-services';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../navigation/navigation-types';
+import { PasswordInput } from './components/PasswordInput';
 import Toast from 'react-native-toast-message';
 import Logo from '../../shared/assets/logo.svg';
 import packageJson from '../../../package.json';
@@ -24,7 +25,11 @@ import packageJson from '../../../package.json';
 type LoginProps = NativeStackScreenProps<RootStackParamList, 'Login'>;
 
 export const LoginView: React.FC<LoginProps> = ({ navigation }) => {
-  const { control, handleSubmit } = useLoginForm({
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useLoginForm({
     defaultValues: {},
   });
 
@@ -65,7 +70,7 @@ export const LoginView: React.FC<LoginProps> = ({ navigation }) => {
           <Logo width={150} height={150} />
         </Heading>
         <VStack space={2.5} w="100%">
-          <Box w="100%">
+          <FormControl isInvalid={Boolean(errors.email)} w="100%">
             <FormControl.Label>Username / Email</FormControl.Label>
             <Controller
               control={control}
@@ -78,19 +83,24 @@ export const LoginView: React.FC<LoginProps> = ({ navigation }) => {
                   onBlur={onBlur}
                   onChangeText={onChange}
                   value={value}
+                  isInvalid={true}
                   isDisabled={isLoading}
                 />
               )}
             />
-          </Box>
-
-          <Box w="100%">
+            {errors.email && errors.email?.message && (
+              <FormControl.ErrorMessage>
+                {errors.email?.message}
+              </FormControl.ErrorMessage>
+            )}
+          </FormControl>
+          <FormControl isInvalid={Boolean(errors.password)} w="100%">
             <FormControl.Label>Password</FormControl.Label>
             <Controller
               control={control}
               name="password"
               render={({ field: { onChange, onBlur, value } }) => (
-                <Input
+                <PasswordInput
                   placeholder="Password"
                   type="password"
                   w="100%"
@@ -98,10 +108,16 @@ export const LoginView: React.FC<LoginProps> = ({ navigation }) => {
                   onChangeText={onChange}
                   value={value}
                   isDisabled={isLoading}
+                  isInvalid={true}
                 />
               )}
             />
-          </Box>
+            {errors.password && errors.password?.message && (
+              <FormControl.ErrorMessage>
+                {errors.password?.message}
+              </FormControl.ErrorMessage>
+            )}
+          </FormControl>
         </VStack>
         <Divider my={2} />
         <Button
