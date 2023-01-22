@@ -12,11 +12,5 @@ module.exports = {
         allowUndefined: true,
       },
     ],
-    [
-      '@babel/plugin-proposal-private-methods',
-      {
-        loose: true,
-      },
-    ],
   ],
 };

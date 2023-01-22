@@ -22,64 +22,84 @@ export const PeopleView: React.FC<PeopleProps> = ({ navigation }) => {
   const { isError, refetch, isLoading, data } = useQuery('People', getPeople);
 
   return (
-    <View>
-      <FlatList
-        ListHeaderComponent={() => (
+    <>
+      <View
+        flex={1}
+        _light={{
+          bg: 'white',
+        }}>
+        {isError && (
           <Box>
+            <Text variant="">Problems with the connection</Text>
             <Button
+              disabled={isLoading}
               onPress={() => {
-                navigation.navigate('PersonCreate');
+                refetch();
               }}>
-              Add a new person
+              Try again
             </Button>
           </Box>
         )}
-        data={data?.sort((a, b) => {
-          return dayjs(b.created).unix() - dayjs(a.created).unix();
-        })}
-        keyExtractor={(item) => String(item.created)}
-        paddingX={5}
-        renderItem={({ item }) => (
-          <Box
-            borderBottomWidth="1"
-            _dark={{
-              borderColor: 'coolGray.600',
-            }}
-            pl={['0', '4']}
-            pr={['0', '5']}
-            py="2">
-            <HStack space={[2, 3]} justifyContent="space-between">
-              <VStack>
+        <FlatList
+          ListHeaderComponent={() => (
+            <Box>
+              <Button
+                onPress={() => {
+                  navigation.navigate('PersonCreate');
+                }}>
+                Add a new person
+              </Button>
+            </Box>
+          )}
+          data={data?.sort((a, b) => {
+            return dayjs(b.created).unix() - dayjs(a.created).unix();
+          })}
+          keyExtractor={(item) => String(item.created)}
+          paddingX={5}
+          paddingTop={5}
+          paddingBottom={50}
+          renderItem={({ item }) => (
+            <Box
+              borderBottomWidth="1"
+              _dark={{
+                borderColor: 'coolGray.600',
+              }}
+              pl={['0', '4']}
+              pr={['0', '5']}
+              py="2">
+              <HStack space={[2, 3]} justifyContent="space-between">
+                <VStack>
+                  <Text
+                    _dark={{
+                      color: 'warmGray.50',
+                    }}
+                    color="coolGray.800"
+                    bold>
+                    {item.name}
+                  </Text>
+                  <Text
+                    color="coolGray.600"
+                    _dark={{
+                      color: 'warmGray.200',
+                    }}>
+                    {item.gender}
+                  </Text>
+                </VStack>
+                <Spacer />
                 <Text
+                  fontSize="xs"
                   _dark={{
                     color: 'warmGray.50',
                   }}
                   color="coolGray.800"
-                  bold>
-                  {item.name}
+                  alignSelf="flex-start">
+                  {dayjs(item.created).format('MMMM D, YYYY h:mm A')}
                 </Text>
-                <Text
-                  color="coolGray.600"
-                  _dark={{
-                    color: 'warmGray.200',
-                  }}>
-                  {item.gender}
-                </Text>
-              </VStack>
-              <Spacer />
-              <Text
-                fontSize="xs"
-                _dark={{
-                  color: 'warmGray.50',
-                }}
-                color="coolGray.800"
-                alignSelf="flex-start">
-                {dayjs(item.created).format('MMMM D, YYYY h:mm A')}
-              </Text>
-            </HStack>
-          </Box>
-        )}
-      />
-    </View>
+              </HStack>
+            </Box>
+          )}
+        />
+      </View>
+    </>
   );
 };
