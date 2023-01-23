@@ -75,8 +75,8 @@ const Tab = () => {
           ...(headerStyles as any),
           tabBarIcon: () => <Ionicons name="settings" size={20} />,
           headerRightContainerStyle: {
-            paddingRight: 16
-          }
+            paddingRight: 16,
+          },
         }}
       />
     </TabNavigator.Navigator>
