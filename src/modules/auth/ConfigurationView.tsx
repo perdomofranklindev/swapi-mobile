@@ -1,8 +1,9 @@
 import React from 'react';
-import { View, Button, Container, Center, Heading } from 'native-base';
+import { View, Button, Center } from 'native-base';
 import { useSessionStore } from './auth-store';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { BottomTabParamList } from '../navigation/navigation-types';
+
 type ConfigurationProps = NativeStackScreenProps<
   BottomTabParamList,
   'Configuration'
@@ -20,7 +21,7 @@ export const ConfigurationView: React.FC<ConfigurationProps> = ({
           color="red.400"
           onPress={() => {
             clearSession();
-            navigation.popToTop();
+            navigation.goBack();
           }}>
           Log out
         </Button>
