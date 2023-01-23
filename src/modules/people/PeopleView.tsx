@@ -15,7 +15,7 @@ import { usePeopleServices } from './people-services';
 import { useQuery } from 'react-query';
 import { PeopleStackParamList } from '../navigation/navigation-types';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { ActivityIndicator } from 'react-native';
+import { ActivityIndicator, SafeAreaView } from 'react-native';
 import dayjs from 'dayjs';
 
 type PeopleProps = NativeStackScreenProps<PeopleStackParamList, 'People'>;
@@ -26,7 +26,10 @@ export const PeopleView: React.FC<PeopleProps> = ({ navigation }) => {
   const theme = useTheme();
 
   return (
-    <>
+    <SafeAreaView style={{
+      flex: 1,
+      display: 'flex'
+    }}>
       <View
         flex={1}
         _light={{
@@ -44,7 +47,11 @@ export const PeopleView: React.FC<PeopleProps> = ({ navigation }) => {
             </Button>
           </Box>
         )}
-        {isLoading && <ActivityIndicator color={theme.colors.primary[500]} />}
+        {isLoading && (
+          <View style={{ flex: 1, justifyContent: 'center' }}>
+            <ActivityIndicator color={theme.colors.primary[500]} />
+          </View>
+        )}
         {data?.length && (
           <FlatList
             ListHeaderComponent={() => (
@@ -64,7 +71,6 @@ export const PeopleView: React.FC<PeopleProps> = ({ navigation }) => {
             keyExtractor={(item) => String(item.created)}
             paddingX={5}
             paddingTop={5}
-            paddingBottom={50}
             renderItem={({ item }) => (
               <Box
                 borderBottomWidth="1"
@@ -105,9 +111,10 @@ export const PeopleView: React.FC<PeopleProps> = ({ navigation }) => {
                 </HStack>
               </Box>
             )}
+            ListFooterComponent={() => <Box paddingBottom={10}></Box>}
           />
         )}
       </View>
-    </>
+    </SafeAreaView>
   );
 };

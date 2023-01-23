@@ -1,11 +1,10 @@
 import * as yup from 'yup';
-import dayjs from 'dayjs';
 
 export const PERSON_FORM_VALIDATOR_SCHEMA = yup
   .object({
-    name: yup.string(),
-    height: yup.string(),
-    gender: yup.string(),
+    name: yup.string().required('This field is required'),
+    height: yup.string().required('This field is required'),
+    gender: yup.string().required('This field is required'),
     created: yup.date().default(new Date()).notRequired(),
   })
   .required();

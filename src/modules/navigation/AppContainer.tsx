@@ -1,5 +1,5 @@
 import React from 'react';
-import { Avatar, HStack, Text } from 'native-base';
+import { Avatar, HStack, Text, useTheme } from 'native-base';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { LoginView } from '../auth/LoginView';
 import { useSessionStore } from '../auth/auth-store';
@@ -49,16 +49,18 @@ const headerStyles = {
 };
 
 const Tab = () => {
+  const theme = useTheme();
   return (
     <TabNavigator.Navigator
       initialRouteName="Home"
       screenOptions={{
-        tabBarActiveTintColor: 'blue',
+        tabBarActiveTintColor: theme.colors.primary[500],
         tabBarInactiveTintColor: 'gray',
         tabBarStyle: {
           paddingBottom: 4,
           paddingTop: 4,
         },
+        tabBarHideOnKeyboard: true,
       }}>
       <TabNavigator.Screen
         name="Home"
