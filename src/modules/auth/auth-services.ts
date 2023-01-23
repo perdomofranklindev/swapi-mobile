@@ -30,7 +30,7 @@ export const useAuthServices = () => {
           return reject({ message: 'Invalid credentials' });
         }
 
-        generateSession();
+        generateSession(String(user.name));
         return resolve();
       }, TIME);
     });

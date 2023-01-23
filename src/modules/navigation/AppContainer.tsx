@@ -1,4 +1,5 @@
 import React from 'react';
+import { Avatar, HStack, Text } from 'native-base';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { LoginView } from '../auth/LoginView';
 import { useSessionStore } from '../auth/auth-store';
@@ -25,6 +26,25 @@ const headerStyles = {
   headerTintColor: '#fff',
   headerTitleStyle: {
     fontWeight: 'bold',
+  },
+  headerRight: () => {
+    const { name } = useSessionStore();
+    return (
+      <HStack space={3} justifyContent="center" alignItems="center">
+        <Text fontWeight="bold" color="white">
+          {name}
+        </Text>
+        <Avatar
+          size="sm"
+          bg="indigo.500"
+          source={{
+            uri: 'https://images.unsplash.com/photo-1614289371518-722f2615943d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
+          }}>
+          {name}
+          <Avatar.Badge bg="green.500" />
+        </Avatar>
+      </HStack>
+    );
   },
 };
 
@@ -54,6 +74,9 @@ const Tab = () => {
         options={{
           ...(headerStyles as any),
           tabBarIcon: () => <Ionicons name="settings" size={20} />,
+          headerRightContainerStyle: {
+            paddingRight: 16
+          }
         }}
       />
     </TabNavigator.Navigator>

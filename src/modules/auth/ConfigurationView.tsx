@@ -13,19 +13,17 @@ export const ConfigurationView: React.FC<ConfigurationProps> = ({
   const { clearSession } = useSessionStore();
 
   return (
-    <View flex={1} _light={{ bg: 'white' }} w="100%">
+    <View flex={1} _light={{ bg: 'white' }} w="100%" p={5}>
       <Center>
-        <Container py={5} w="100%">
-          <Button
-            w="100%"
-            color="red.400"
-            onPress={() => {
-              clearSession();
-              navigation.popToTop();
-            }}>
-            Log out
-          </Button>
-        </Container>
+        <Button
+          w="100%"
+          color="red.400"
+          onPress={() => {
+            clearSession();
+            navigation.popToTop();
+          }}>
+          Log out
+        </Button>
       </Center>
     </View>
   );

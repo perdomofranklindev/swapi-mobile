@@ -3,7 +3,6 @@ import { useAuthServices } from '../auth-services';
 import { act, renderHook } from '@testing-library/react-hooks';
 
 describe('Auth module', () => {
-
   afterEach(() => {
     jest.resetAllMocks();
     cleanup();
@@ -15,8 +14,8 @@ describe('Auth module', () => {
       // email
       try {
         await result.current.login({
-          email: 'mockuser@gmail.com',
-          password: 'mockuser78',
+          email: 'mancerayder@gmail.com',
+          password: 'mancerayder78',
         });
         expect(true).toBeTruthy();
       } catch (error) {
@@ -26,8 +25,8 @@ describe('Auth module', () => {
       // username
       try {
         await result.current.login({
-          email: 'mockuser',
-          password: 'mockuser78',
+          email: 'mancerayder',
+          password: 'mancerayder78',
         });
         expect(true).toBeTruthy();
       } catch (error) {

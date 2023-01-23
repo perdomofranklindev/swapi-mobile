@@ -3,9 +3,10 @@ import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 
 interface SessionState {
-  session: string | null;
+  name: string | null;
+  session: string | null; // Token or access token.
   _hasHydrated: boolean;
-  generateSession: () => void;
+  generateSession: (name: string) => void;
   clearSession: () => void;
 }
 
@@ -13,10 +14,19 @@ interface SessionState {
 export const useSessionStore = create(
   persist<SessionState>(
     (set) => ({
+      name: null,
       session: null,
       _hasHydrated: false,
-      generateSession: () => set({ session: 'mock-session' }),
-      clearSession: () => set({ session: null }),
+      generateSession: (name: string) =>
+        set({
+          name,
+          session: 'mock-session',
+        }),
+      clearSession: () =>
+        set({
+          name: null,
+          session: null,
+        }),
     }),
     {
       name: 'session-storage', // Unique name

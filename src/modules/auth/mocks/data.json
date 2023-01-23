@@ -1,7 +1,14 @@
 [
   {
-    "email": "mockuser@gmail.com",
-    "username": "mockuser",
-    "password": "mockuser78"
+    "email": "mancerayder@gmail.com",
+    "username": "mancerayder",
+    "password": "mancerayder78",
+    "name": "Mance Rayder"
+  },
+  {
+    "email": "jaimelannister@gmail.com",
+    "username": "jaimelannister",
+    "password": "jaimelannister78",
+    "name": "Jaime Lannister"
   }
 ]

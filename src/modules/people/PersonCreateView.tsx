@@ -4,10 +4,10 @@ import {
   Button,
   Input,
   Radio,
-  Container,
   Box,
   VStack,
   Divider,
+  View,
 } from 'native-base';
 import { KeyboardType } from 'react-native/types';
 import { Controller } from 'react-hook-form';
@@ -41,8 +41,8 @@ export const PersonCreateView: React.FC<PersonCreateProps> = ({}) => {
   };
 
   return (
-    <Center>
-      <Container>
+    <View flex={1} _light={{ bg: 'white' }} w="100%" p={5}>
+      <Center>
         <Box w="100%">
           <VStack space={2.5} w="100%">
             {PERSON_INPUTS.map(
@@ -93,7 +93,7 @@ export const PersonCreateView: React.FC<PersonCreateProps> = ({}) => {
           <Divider my={2} />
           <Button onPress={handleSubmit(onSubmit)}>Save</Button>
         </Box>
-      </Container>
-    </Center>
+      </Center>
+    </View>
   );
 };

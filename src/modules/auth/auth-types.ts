@@ -12,4 +12,5 @@ export type LoginFormType =
 
 export interface User extends LoginFormType {
   username?: string;
+  name?: string;
 }
