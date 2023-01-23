@@ -112,7 +112,7 @@ const People = () => (
 );
 
 export const AppContainer = () => {
-  // Hydrated is a flag to wait until the storage memory is already read.
+  // Hydrated is a flag to wait until the storage persist memory is already read.
   const { session, _hasHydrated } = useSessionStore();
 
   return (

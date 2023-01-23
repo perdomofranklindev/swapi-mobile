@@ -3,12 +3,14 @@ import { Person } from './people-types';
 
 interface PeopleState {
   people: Array<Person>;
+  search: string | null;
   updateAllPeople: (people: Array<Person>) => void;
   addPerson: (person: Person) => void;
   removePerson: (index: number) => void;
 }
 
 export const usePeopleStore = create<PeopleState>((set) => ({
+  search: null,
   people: [],
   updateAllPeople: (people) => {
     set({ people });

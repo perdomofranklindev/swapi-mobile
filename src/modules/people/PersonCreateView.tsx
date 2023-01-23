@@ -105,6 +105,7 @@ export const PersonCreateView: React.FC<PersonCreateProps> = ({}) => {
                           <FormControl.Label>Gender</FormControl.Label>
                           <Radio.Group
                             id={id}
+                            defaultValue={undefined}
                             value={value}
                             name={label}
                             onChange={onChange}
